@@ -6,8 +6,8 @@ For this project I will implement JavaScript, HTML, and CSS.
 
 This project will display restaurants using the Yelp API. Once the user select a category of restaurants he will be shown all of the restaurants' information that cooincide with that category. The information diplayed will be: the restaurant's name, restaurant's image, review, and pricing field, with an option of viewing the restaurant's webpage.
 
-In this project I will: - Use Yelp API to obtain information for restaurants
-                        - Make sure that the web page is responsive for desktops, tablets, and phones
+In this project I will: + Use Yelp API to obtain information for restaurants
+                        + Make sure that the web page is responsive for desktops, tablets, and phones
 
 # Desktop version
 In the desktop version the user will be presented with three buttons for different categories of restaurants. Once the user clicks on a particular category of restaurants below of these buttons, 15 restaurants that match the category will be shown. 
