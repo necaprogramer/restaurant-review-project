@@ -1,0 +1,29 @@
+{
+  "name": "restaurant-review-project",
+  "version": "1.0.0",
+  "description": "This is a project for an internship position in Consulteer",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/necaprogramer/restaurant-review-project.git"
+  },
+  "keywords": [
+    "restaurant",
+    "review",
+    "yelp",
+    "api",
+    "project"
+  ],
+  "author": "necaprogramer",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/necaprogramer/restaurant-review-project/issues"
+  },
+  "homepage": "https://github.com/necaprogramer/restaurant-review-project#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
