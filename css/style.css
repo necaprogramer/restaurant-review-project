@@ -1,0 +1,33 @@
+body{
+    
+}
+
+body > #container {
+    display: grid;
+    grid-template-columns: repeat(3, 20em);
+    justify-content: center;
+    grid-gap: 1em;
+}
+
+body > #container > .restraunt-container{
+    text-align: center;
+    padding: 1em;
+}
+
+#loader{
+    background-image: url('../resources/loading-37.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 5em;
+    width: 5em;
+    margin: auto;
+}
+
+.hide{
+    opacity: 0;
+}
+
+.show{
+    opacity: 1;
+}
