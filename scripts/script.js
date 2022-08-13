@@ -1,5 +1,7 @@
 import { API_URL, BEARER_TOKEN } from './api-config.js';
 
+const TOTAL_RESTAURANTS = 1000;
+
 let containerDiv = document.getElementById('container');
 let buttonBurgers = document.getElementById('burgers');
 let buttonMexican = document.getElementById('mexican');
@@ -8,13 +10,13 @@ let buttonJapanese = document.getElementById('japanese');
 let loader = document.getElementById('loader');
 hideLoader();
 
-let limitOfShownRestraunts = 15;
-let offsetOfShownRestraunts = 0;
-let totalShownRestraunts = 0;
+let limitOfShownRestaurants = 15;
+let offsetOfShownRestaurants = 0;
+let totalShownRestaurants = 0;
 
 buttonBurgers.addEventListener('click', () => {
-    getRequest('burgers', offsetOfShownRestraunts, limitOfShownRestraunts);
-    totalShownRestraunts += 15;
+    getRequest('burgers', offsetOfShownRestaurants, limitOfShownRestaurants);
+    totalShownRestaurants += 15;
     infiniteScroll('burgers');
 });
 
@@ -31,10 +33,10 @@ function infiniteScroll(category){
         if(window.innerHeight + window.pageYOffset >= document.body.offsetHeight){
             showLoader();
             setTimeout(() => {
-                if(totalShownRestraunts != 1000){
-                    offsetOfShownRestraunts += 15;
-                    getRequest(category, offsetOfShownRestraunts, limitOfShownRestraunts);
-                    totalShownRestraunts += 15;
+                if(totalShownRestaurants != TOTAL_RESTAURANTS){
+                    offsetOfShownRestaurants += 15;
+                    getRequest(category, offsetOfShownRestaurants, limitOfShownRestaurants);
+                    totalShownRestaurants += 15;
                 }
                 hideLoader();
             }, 800)
@@ -55,23 +57,23 @@ async function getRequest(category, offset, limit){
 function getData(result){
     console.log(result.data.businesses);
     let array = result.data.businesses;
-    array.forEach(restaraunt => {
-        createRestrauntCard(restaraunt.name, restaraunt.image_url, restaraunt.rating, restaraunt.price, restaraunt.url);
+    array.forEach(restaurant => {
+        createRestrauntCard(restaurant.name, restaurant.image_url, restaurant.rating, restaurant.price, restaurant.url);
     });
 }
 
-function createRestrauntCard(restrauntName, restrauntImage, restrauntRating, restrauntPrice, restrauntLink){
+function createRestrauntCard(restaurantName, restaurantImage, restaurantRating, restrauntPrice, restaurantLink){
     var restarauntDiv = document.createElement('div');
     containerDiv.appendChild(restarauntDiv);
     restarauntDiv.classList.add('restraunt-container');
 
     let name = document.createElement('h3');
     restarauntDiv.appendChild(name);
-    name.innerText = restrauntName;
+    name.innerText = restaurantName;
 
     let image = document.createElement('div');
     restarauntDiv.appendChild(image);
-    image.setAttribute('style', `background-image: url(${restrauntImage});
+    image.setAttribute('style', `background-image: url(${restaurantImage});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -80,13 +82,13 @@ function createRestrauntCard(restrauntName, restrauntImage, restrauntRating, res
 
     let ratingAndPrice = document.createElement('div');
     restarauntDiv.appendChild(ratingAndPrice);
-    ratingAndPrice.innerText = restrauntRating + restrauntPrice;
+    ratingAndPrice.innerText = restaurantRating + restrauntPrice;
 
     let button = document.createElement('button');
     restarauntDiv.appendChild(button);
     let link = document.createElement('a');
     button.appendChild(link);
-    link.setAttribute('href', restrauntLink);
+    link.setAttribute('href', restaurantLink);
     link.innerText = 'Link to restraunt website';
 }
 
