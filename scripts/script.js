@@ -58,21 +58,21 @@ function getData(result){
     console.log(result.data.businesses);
     let array = result.data.businesses;
     array.forEach(restaurant => {
-        createRestrauntCard(restaurant.name, restaurant.image_url, restaurant.rating, restaurant.price, restaurant.url);
+        createRestaurantCard(restaurant.name, restaurant.image_url, restaurant.rating, restaurant.price, restaurant.url);
     });
 }
 
-function createRestrauntCard(restaurantName, restaurantImage, restaurantRating, restrauntPrice, restaurantLink){
-    var restarauntDiv = document.createElement('div');
-    containerDiv.appendChild(restarauntDiv);
-    restarauntDiv.classList.add('restraunt-container');
+function createRestaurantCard(restaurantName, restaurantImage, restaurantRating, restaurantPrice, restaurantLink){
+    var restaurantDiv = document.createElement('div');
+    containerDiv.appendChild(restaurantDiv);
+    restaurantDiv.classList.add('restaurant-container');
 
     let name = document.createElement('h3');
-    restarauntDiv.appendChild(name);
+    restaurantDiv.appendChild(name);
     name.innerText = restaurantName;
 
     let image = document.createElement('div');
-    restarauntDiv.appendChild(image);
+    restaurantDiv.appendChild(image);
     image.setAttribute('style', `background-image: url(${restaurantImage});
     background-size: cover;
     background-repeat: no-repeat;
@@ -81,15 +81,15 @@ function createRestrauntCard(restaurantName, restaurantImage, restaurantRating, 
 
 
     let ratingAndPrice = document.createElement('div');
-    restarauntDiv.appendChild(ratingAndPrice);
-    ratingAndPrice.innerText = restaurantRating + restrauntPrice;
+    restaurantDiv.appendChild(ratingAndPrice);
+    ratingAndPrice.innerText = restaurantRating + restaurantPrice;
 
     let button = document.createElement('button');
-    restarauntDiv.appendChild(button);
+    restaurantDiv.appendChild(button);
     let link = document.createElement('a');
     button.appendChild(link);
     link.setAttribute('href', restaurantLink);
-    link.innerText = 'Link to restraunt website';
+    link.innerText = 'Link to restaurant website';
 }
 
 function hideLoader(){
