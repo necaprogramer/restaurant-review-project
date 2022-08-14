@@ -70,9 +70,13 @@ body > #container > .restaurant-container > .restaurant-rating-and-price > .rati
     display: flex;
 }
 
+body > #container > .restaurant-container > .restaurant-rating-and-price > .price{
+    font-size: medium;
+}
+
 body > #container > .restaurant-container > .restaurant-website-button{
-    height: 3rem;
-    width: 3rem;
+    height: 2rem;
+    width: 5rem;
 }
 
 body > #container > .restaurant-container > .restaurant-website-button:hover{
@@ -82,7 +86,7 @@ body > #container > .restaurant-container > .restaurant-website-button:hover{
 body > #container > .restaurant-container > .restaurant-website-button > a{
     text-decoration: none;
     color: black;
-    font-size: medium;
+    font-size: large;
 }
 
 body > #container > .restaurant-container > .restaurant-website-button > a:hover{
@@ -136,4 +140,34 @@ body > #container > .restaurant-container > .restaurant-website-button > a:hover
 
 #end-of-results{
     text-align: center;
+}
+
+@media (max-width: 767px) and (min-width:400px){
+
+    body{
+        margin: 0;
+    }
+
+    body > #categories{
+        margin-left: 0.5rem;
+    }
+
+    body > #categories > #category-list > .category-list-item > .category-button{
+        height: 4rem;
+        width: 12rem;
+    }
+
+    body > #container{
+        grid-template-columns: repeat(1, 100%);
+    }
+
+    body > #container > .restaurant-container{
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        border-radius: 1rem;
+    }
+
+    body > #container > .restaurant-container > .restaurant-website-button{
+        align-self: center;
+    }
 }

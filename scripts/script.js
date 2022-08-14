@@ -123,11 +123,19 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
 
     let image = document.createElement('div');
     restaurantDiv.appendChild(image);
-    image.setAttribute('style', `background-image: url(${restaurantImage});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    height: 10rem;`);
+    if(restaurantImage === ''){
+        image.setAttribute('style', `background-image: url('../resources/img/generic-restaurant-image.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 10rem;`);
+    }else{
+        image.setAttribute('style', `background-image: url(${restaurantImage});
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 10rem;`);
+    }
 
 
     let ratingAndPrice = document.createElement('div');
@@ -159,7 +167,7 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
     }
 
     ratingAndPrice.appendChild(price);
-    price.classList.add('class');
+    price.classList.add('pricing');
     if(restaurantPrice === undefined){
         price.innerText = 'No pricing :('
     }else{
