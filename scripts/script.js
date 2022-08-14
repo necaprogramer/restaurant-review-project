@@ -7,10 +7,8 @@ let arrayOfRestaurants = [];
 let pageScrolledCounter = 1;
 let totalRestaurants = 0;
 
-
 let allCategoriesArray = [];
 let restaurantCategories = [];
-
 
 let containerDiv = document.getElementById('container');
 
@@ -141,11 +139,32 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
 
     ratingAndPrice.appendChild(rating);
     rating.classList.add('rating');
-    rating.innerText = restaurantRating;
+    for(let i = 0; i <= 5; i++){
+        let star = document.createElement('div');
+        rating.appendChild(star);
+        if(restaurantRating === undefined){
+            star.classList.add('review-star-empty');
+        }else if(restaurantRating < i){
+            if(restaurantRating - i == -0.5){
+                star.classList.remove('review-star-full');
+            }else{
+                star.classList.add('review-star-empty');
+        }}else if(restaurantRating > i){
+            if(restaurantRating - i == 0.5){
+                star.classList.add('review-star-half');
+            }else{
+                star.classList.add('review-star-full');
+            }
+        }
+    }
 
     ratingAndPrice.appendChild(price);
     price.classList.add('class');
-    price.innerText = restaurantPrice;
+    if(restaurantPrice === undefined){
+        price.innerText = 'No pricing :('
+    }else{
+        price.innerText = restaurantPrice;
+    }
 
     let button = document.createElement('button');
     restaurantDiv.appendChild(button);

@@ -66,23 +66,64 @@ body > #container > .restaurant-container > .restaurant-rating-and-price{
     grid-template-columns: repeat(2, auto);
 }
 
+body > #container > .restaurant-container > .restaurant-rating-and-price > .rating{
+    display: flex;
+}
+
 body > #container > .restaurant-container > .restaurant-website-button{
-    height: 2rem;
+    height: 3rem;
+    width: 3rem;
+}
+
+body > #container > .restaurant-container > .restaurant-website-button:hover{
+    background-color: slateblue;
 }
 
 body > #container > .restaurant-container > .restaurant-website-button > a{
     text-decoration: none;
     color: black;
+    font-size: medium;
+}
+
+body > #container > .restaurant-container > .restaurant-website-button > a:hover{
+    color: white;
 }
 
 #loader{
-    background-image: url('../resources/loading-37.gif');
+    background-image: url('../resources/gif/loading-37.gif');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     height: 5rem;
     width: 5rem;
     margin: auto;
+}
+
+.review-star-full{
+    background-image: url('../resources/img/star-solid.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 1rem;
+    width: 1rem;
+}
+
+.review-star-half{
+    background-image: url('../resources/img/star-half-stroke-solid.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 1rem;
+    width: 1rem;
+}
+
+.review-star-empty{
+    background-image: url('../resources/img/star-regular.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 1rem;
+    width: 1rem;
 }
 
 .hide{
