@@ -19,7 +19,7 @@ let categoriesList = document.getElementById('category-list');
 let loader = document.getElementById('loader');
 hideLoader();
 
-let endOfResults = document.createElement('div');
+let endOfResults = document.getElementById('end-of-results');
 
 function createCategoryButtons(array){
     for(let i = 0; i < array.length; i++){
@@ -91,11 +91,13 @@ function infiniteScroll(category) {
                         if ((arrayOfRestaurants.length - startingScrollIndex) < RESTAURANTS_PER_SCROLL) {
                             getRequest(category, startingScrollIndex, LIMIT_OF_FETCHED_RESTAURANTS);
                         }
-                    }else if(totalShownRestaurants == totalRestaurants){
-                        reachedEndOfRestaurants();
+                        hideLoader();
+                    }
+                    if(totalShownRestaurants >= totalRestaurants){
+                        document.body.removeChild(loader);
+                        endOfResults.innerText = `That's all of 'em chief. Go back to the top?`;
                     }
                     pageScrolledCounter++;
-                    hideLoader();
                 }, 500)
             }
     });
@@ -132,19 +134,26 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
 
     let ratingAndPrice = document.createElement('div');
     restaurantDiv.appendChild(ratingAndPrice);
-    ratingAndPrice.innerText = restaurantRating + restaurantPrice;
+    ratingAndPrice.classList.add('restaurant-rating-and-price');
+
+    let rating = document.createElement('div');
+    let price = document.createElement('div');
+
+    ratingAndPrice.appendChild(rating);
+    rating.classList.add('rating');
+    rating.innerText = restaurantRating;
+
+    ratingAndPrice.appendChild(price);
+    price.classList.add('class');
+    price.innerText = restaurantPrice;
 
     let button = document.createElement('button');
     restaurantDiv.appendChild(button);
+    button.setAttribute('class', 'restaurant-website-button');
     let link = document.createElement('a');
     button.appendChild(link);
     link.setAttribute('href', restaurantLink);
-    link.innerText = 'Link to restaurant website';
-}
-
-function reachedEndOfRestaurants(){
-    body.appendChild(endOfResults);
-    endOfResults.innerText = `That's all of em' chief! Go back to top?`;
+    link.innerText = 'View';
 }
 
 //#region helper methods

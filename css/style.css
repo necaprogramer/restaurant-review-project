@@ -15,8 +15,10 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
     overflow: scroll;
+    gap: 1rem;
+    padding: 0;
+    padding-bottom: 1rem;
 }
 
 #categories > #category-list > .category-list-item{
@@ -27,6 +29,18 @@ body{
     padding: 0.7em;
     height: 3rem;
     cursor: pointer;
+    width: 18rem;
+    font-weight: 800;
+    font-size: medium;
+    border-radius: 0.5rem;
+    background-image: linear-gradient(60deg, slateblue, purple, lightskyblue);
+    color: white;
+}
+
+#categories > #category-list > .category-list-item > .category-button:hover{
+    background-image: linear-gradient(150deg, slateblue, lightskyblue, slateblue);
+    color: darkblue;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 body > #container {
@@ -45,6 +59,22 @@ body > #container > .restaurant-container{
     transition: 0.3s;
 }
 
+body > #container > .restaurant-container > .restaurant-rating-and-price{
+    padding: 1rem;
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: repeat(2, auto);
+}
+
+body > #container > .restaurant-container > .restaurant-website-button{
+    height: 2rem;
+}
+
+body > #container > .restaurant-container > .restaurant-website-button > a{
+    text-decoration: none;
+    color: black;
+}
+
 #loader{
     background-image: url('../resources/loading-37.gif');
     background-repeat: no-repeat;
@@ -61,4 +91,8 @@ body > #container > .restaurant-container{
 
 .show{
     opacity: 1;
+}
+
+#end-of-results{
+    text-align: center;
 }
