@@ -7,34 +7,70 @@ let arrayOfRestaurants = [];
 let pageScrolledCounter = 1;
 let totalRestaurants = 0;
 
+
+let allCategoriesArray = [];
+let restaurantCategories = [];
+
+
 let containerDiv = document.getElementById('container');
-let buttonBurgers = document.getElementById('burgers');
-let buttonMexican = document.getElementById('mexican');
-let buttonJapanese = document.getElementById('japanese');
+
+let categoriesList = document.getElementById('category-list');
 
 let loader = document.getElementById('loader');
 hideLoader();
 
+let endOfResults = document.createElement('div');
+
+function createCategoryButtons(array){
+    for(let i = 0; i < array.length; i++){
+        let categoryList = document.createElement('li')
+        let categoryButton = document.createElement('button');
+
+        categoriesList.appendChild(categoryList);
+        categoryList.appendChild(categoryButton);
+
+        categoryList.setAttribute('class', 'category-list-item');
+        categoryButton.classList.add('category-button');
+        categoryButton.setAttribute('id', `${array[i].alias}`);
+        categoryButton.innerText = `${array[i].title}`;
+
+        ifClicked(categoryButton, array[i].alias);
+    }
+}
+
+async function ifClicked(categoryButton, categoryId){
+    categoryButton.addEventListener('click', async () => {
+        await getRequest(categoryId, offsetOfFetchedRestaurants, LIMIT_OF_FETCHED_RESTAURANTS);
+        elementsOnPage = arrayOfRestaurants.slice(0, RESTAURANTS_PER_SCROLL);
+        createRestaurantCardsFromArray(elementsOnPage);
+        totalShownRestaurants += RESTAURANTS_PER_SCROLL;
+        infiniteScroll(categoryId);
+    })
+}
+
+getCategories();
+
+async function getCategories(){
+    try {
+        const res = await fetch('../resources/categories.json');
+        const json = await res.json();
+        allCategoriesArray = json;
+        allCategoriesArray.map(el => {
+            for(let i = 0; i < el.parents.length; i++){
+                if(el.parents[i] == 'restaurants'){
+                    restaurantCategories.push(el);
+                }
+            }
+        });
+        createCategoryButtons(restaurantCategories);
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 let offsetOfFetchedRestaurants = 0;
 let totalShownRestaurants = 0;
 let elementsOnPage = 0;
-
-buttonBurgers.addEventListener('click', async () => {
-    await getRequest('burgers', offsetOfFetchedRestaurants, LIMIT_OF_FETCHED_RESTAURANTS);
-    elementsOnPage = arrayOfRestaurants.slice(0, RESTAURANTS_PER_SCROLL);
-    createRestaurantCardsFromArray(elementsOnPage);
-    totalShownRestaurants += RESTAURANTS_PER_SCROLL;
-    infiniteScroll('burgers');
-});
-
-buttonMexican.addEventListener('click', () => {
-    getRequest('mexican');
-});
-
-buttonJapanese.addEventListener('click', () => {
-    getRequest('japanese');
-});
 
 function createRestaurantCardsFromArray(array) {
     for (let i = 0; i < array.length; i++) {
@@ -55,6 +91,8 @@ function infiniteScroll(category) {
                         if ((arrayOfRestaurants.length - startingScrollIndex) < RESTAURANTS_PER_SCROLL) {
                             getRequest(category, startingScrollIndex, LIMIT_OF_FETCHED_RESTAURANTS);
                         }
+                    }else if(totalShownRestaurants == totalRestaurants){
+                        reachedEndOfRestaurants();
                     }
                     pageScrolledCounter++;
                     hideLoader();
@@ -89,7 +127,7 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    height: 10em;`);
+    height: 10rem;`);
 
 
     let ratingAndPrice = document.createElement('div');
@@ -104,15 +142,12 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
     link.innerText = 'Link to restaurant website';
 }
 
-//#region helper methods
-function debounce(func, timeout = 200) {
-    let timer;
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => { func.apply(this, args); }, timeout);
-    };
+function reachedEndOfRestaurants(){
+    body.appendChild(endOfResults);
+    endOfResults.innerText = `That's all of em' chief! Go back to top?`;
 }
 
+//#region helper methods
 function hideLoader() {
     loader.classList.remove('show');
     loader.classList.add('hide');
