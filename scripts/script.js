@@ -117,10 +117,6 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
     containerDiv.appendChild(restaurantDiv);
     restaurantDiv.classList.add('restaurant-container');
 
-    let name = document.createElement('h3');
-    restaurantDiv.appendChild(name);
-    name.innerText = restaurantName;
-
     let image = document.createElement('div');
     restaurantDiv.appendChild(image);
     if(restaurantImage === ''){
@@ -137,6 +133,9 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
         height: 10rem;`);
     }
 
+    let name = document.createElement('h3');
+    restaurantDiv.appendChild(name);
+    name.innerText = restaurantName;
 
     let ratingAndPrice = document.createElement('div');
     restaurantDiv.appendChild(ratingAndPrice);

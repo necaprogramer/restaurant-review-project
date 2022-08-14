@@ -167,7 +167,11 @@ body > #container > .restaurant-container > .restaurant-website-button > a:hover
         border-radius: 1rem;
     }
 
-    body > #container > .restaurant-container > .restaurant-website-button{
+    body > #container > .restaurant-container > h3{
         align-self: center;
+    }
+
+    body > #container > .restaurant-container > .restaurant-website-button{
+        justify-self: end;
     }
 }
