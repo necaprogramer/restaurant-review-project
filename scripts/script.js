@@ -5,7 +5,7 @@ const LIMIT_OF_FETCHED_RESTAURANTS = 50;
 
 let arrayOfRestaurants = [];
 let pageScrolledCounter = 1;
-let totalRestaurants = 0;
+var totalRestaurants = 0;
 
 let allCategoriesArray = [];
 let restaurantCategories = [];
@@ -106,6 +106,9 @@ async function getRequest(category, offset, limit) {
         const res = await axios.get(API_URL + `&categories=${category}&offset=${offset}&limit=${limit}`, { headers: { Authorization: `Bearer ${BEARER_TOKEN}` } });
         arrayOfRestaurants.push(...res.data.businesses);
         totalRestaurants = res.data.total;
+        if(totalRestaurants == 0){
+            endOfResults.innerText = `Sorry, chief there aren't any restaurants in this category. Maybe try a different category?`;
+        }
     }
     catch (e) {
         console.log(e);
@@ -192,7 +195,6 @@ function resetRestaurantCards(){
     let restaurants = document.querySelectorAll('.restaurant-container');
     restaurants.forEach(restaurant => {
         containerDiv.removeChild(restaurant);
-        console.log(restaurant);
     });
     endOfResults.innerText = ``;
 }
