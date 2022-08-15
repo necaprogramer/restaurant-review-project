@@ -3,6 +3,8 @@ import { API_URL, BEARER_TOKEN } from './api-config.js';
 const RESTAURANTS_PER_SCROLL = 15;
 const LIMIT_OF_FETCHED_RESTAURANTS = 50;
 
+/* Limit was set to 50, to lower the number of requests sent to YELP API, since we are limited to only about 5000 requests per day. So, hypothetically only a small number of users could use up this number of requests */
+
 let arrayOfRestaurants = [];
 let pageScrolledCounter = 1;
 var totalRestaurants = 0;
@@ -40,6 +42,9 @@ async function ifClicked(categoryButton, categoryId){
     categoryButton.addEventListener('click', async () => {
         resetRestaurantCards();
         await getRequest(categoryId, offsetOfFetchedRestaurants, LIMIT_OF_FETCHED_RESTAURANTS);
+        /* 
+        Since we are getting 50 restaurants and putting that in arrayOfRestaurants variable, we need to slice 15 restaurants from this array, which will be displayed & we put them in their own array
+        */
         elementsOnPage = arrayOfRestaurants.slice(0, RESTAURANTS_PER_SCROLL);
         createRestaurantCardsFromArray(elementsOnPage);
         totalShownRestaurants += RESTAURANTS_PER_SCROLL;
@@ -84,9 +89,11 @@ function infiniteScroll(category) {
                 setTimeout(() => {
                     if (totalShownRestaurants <= totalRestaurants) {
                         let startingScrollIndex = RESTAURANTS_PER_SCROLL * pageScrolledCounter;
+                        /* We get the next 15 elements of the arrayOfRestaurants variable */
                         elementsOnPage = arrayOfRestaurants.slice(startingScrollIndex, startingScrollIndex + RESTAURANTS_PER_SCROLL);
                         createRestaurantCardsFromArray(elementsOnPage);
                         totalShownRestaurants += RESTAURANTS_PER_SCROLL;
+                        /* If we have used up restaurants in the arrayOfRestaurants variable, send a new request and get next 50 restaurants */
                         if ((arrayOfRestaurants.length - startingScrollIndex) < RESTAURANTS_PER_SCROLL) {
                             getRequest(category, startingScrollIndex, LIMIT_OF_FETCHED_RESTAURANTS);
                         }
@@ -106,6 +113,7 @@ async function getRequest(category, offset, limit) {
         const res = await axios.get(API_URL + `&categories=${category}&offset=${offset}&limit=${limit}`, { headers: { Authorization: `Bearer ${BEARER_TOKEN}` } });
         arrayOfRestaurants.push(...res.data.businesses);
         totalRestaurants = res.data.total;
+        /* Added a check immediately, so we can immediately tell the user if there are any restaurants in this category */
         if(totalRestaurants == 0){
             endOfResults.innerText = `Sorry, chief there aren't any restaurants in this category. Maybe try a different category?`;
         }
@@ -185,6 +193,8 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
     link.innerText = 'View';
 }
 
+
+//#region helper methods
 function resetRestaurantCards(){
     arrayOfRestaurants = [];
     pageScrolledCounter = 1;
@@ -199,7 +209,6 @@ function resetRestaurantCards(){
     endOfResults.innerText = ``;
 }
 
-//#region helper methods
 function hideLoader() {
     loader.classList.remove('show');
     loader.classList.add('hide');
