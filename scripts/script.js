@@ -38,6 +38,7 @@ function createCategoryButtons(array){
 
 async function ifClicked(categoryButton, categoryId){
     categoryButton.addEventListener('click', async () => {
+        resetRestaurantCards();
         await getRequest(categoryId, offsetOfFetchedRestaurants, LIMIT_OF_FETCHED_RESTAURANTS);
         elementsOnPage = arrayOfRestaurants.slice(0, RESTAURANTS_PER_SCROLL);
         createRestaurantCardsFromArray(elementsOnPage);
@@ -89,12 +90,11 @@ function infiniteScroll(category) {
                         if ((arrayOfRestaurants.length - startingScrollIndex) < RESTAURANTS_PER_SCROLL) {
                             getRequest(category, startingScrollIndex, LIMIT_OF_FETCHED_RESTAURANTS);
                         }
-                        hideLoader();
-                    }
-                    if(totalShownRestaurants >= totalRestaurants){
+                    }else if(totalShownRestaurants >= totalRestaurants){
                         document.body.removeChild(loader);
                         endOfResults.innerText = `That's all of 'em chief. Go back to the top?`;
                     }
+                    hideLoader();
                     pageScrolledCounter++;
                 }, 500)
             }
@@ -180,6 +180,21 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
     button.appendChild(link);
     link.setAttribute('href', restaurantLink);
     link.innerText = 'View';
+}
+
+function resetRestaurantCards(){
+    arrayOfRestaurants = [];
+    pageScrolledCounter = 1;
+    totalRestaurants = 0;
+    totalShownRestaurants = 0;
+    offsetOfFetchedRestaurants = 0;
+    elementsOnPage = 0;
+    let restaurants = document.querySelectorAll('.restaurant-container');
+    restaurants.forEach(restaurant => {
+        containerDiv.removeChild(restaurant);
+        console.log(restaurant);
+    });
+    endOfResults.innerText = ``;
 }
 
 //#region helper methods
