@@ -7,7 +7,7 @@ const LIMIT_OF_FETCHED_RESTAURANTS = 50;
 
 let arrayOfRestaurants = [];
 let pageScrolledCounter = 1;
-var totalRestaurants = 0;
+let totalRestaurants = 0;
 
 let allCategoriesArray = [];
 let restaurantCategories = [];
@@ -98,7 +98,7 @@ function infiniteScroll(category) {
                             getRequest(category, startingScrollIndex, LIMIT_OF_FETCHED_RESTAURANTS);
                         }
                     }else if(totalShownRestaurants >= totalRestaurants){
-                        document.body.removeChild(loader);
+                        hideLoader();
                         endOfResults.innerText = `That's all of 'em chief. Go back to the top?`;
                     }
                     hideLoader();
@@ -108,14 +108,15 @@ function infiniteScroll(category) {
     });
 }
 
+console.log(totalRestaurants);
+
 async function getRequest(category, offset, limit) {
     try {
         const res = await axios.get(API_URL + `&categories=${category}&offset=${offset}&limit=${limit}`, { headers: { Authorization: `Bearer ${BEARER_TOKEN}` } });
         arrayOfRestaurants.push(...res.data.businesses);
         totalRestaurants = res.data.total;
-        /* Added a check immediately, so we can immediately tell the user if there are any restaurants in this category */
         if(totalRestaurants == 0){
-            endOfResults.innerText = `Sorry, chief there aren't any restaurants in this category. Maybe try a different category?`;
+            endOfResults.innerText = `There aren't any of 'em chief. Maybe try with a different category?`;
         }
     }
     catch (e) {
