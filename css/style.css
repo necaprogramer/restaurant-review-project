@@ -145,17 +145,13 @@ footer{
     gap: 1rem;
 }
 
-footer > img{
-    height: 1rem;
+footer > button{
+    width: 3rem;
+    height: 2rem;
 }
 
-#end-of-results{
-    text-align: center;
-}
-
-.back-to-top > a{
-    height: 1rem;
-    width: 1rem;
+footer > button:hover{
+    cursor: pointer;
 }
 
 @media (max-width: 767px) and (min-width:400px){

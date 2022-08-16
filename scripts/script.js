@@ -20,11 +20,11 @@ let loader = document.getElementById('loader');
 hideLoader();
 
 let footer = document.querySelector('footer');
-let endOfResults = document.createElement('div');
+let endOfResults = document.createElement('h4');
 endOfResults.innerText = `Seems like they don't have 'em chief. Maybe try with a different category?`
 let backToTopButton = document.createElement('button');
 backToTopButton.onclick = toTop;
-backToTopButton.innerHTML = `<i class="fa-solid fa-jet-fighter-up"></i>`;
+backToTopButton.innerHTML = `<i class="fa-solid fa-lg fa-jet-fighter-up"></i>`;
 footer.appendChild(endOfResults);
 footer.appendChild(backToTopButton);
 hideFooterContents();
@@ -123,6 +123,9 @@ async function getRequest(category, offset, limit) {
         arrayOfRestaurants.push(...res.data.businesses);
         totalRestaurants = res.data.total;
         if(totalRestaurants == 0){
+            showFooterContents();
+            backToTopButton.classList.remove('show');
+            backToTopButton.classList.add('hide');
             endOfResults.innerText = `There aren't any of 'em chief. Maybe try with a different category?`;
         }
     }
