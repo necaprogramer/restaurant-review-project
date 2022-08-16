@@ -23,7 +23,7 @@ let footer = document.querySelector('footer');
 let endOfResults = document.createElement('div');
 endOfResults.innerText = `Seems like they don't have 'em chief. Maybe try with a different category?`
 let backToTopButton = document.createElement('button');
-backToTopButton.onclick = toTop();
+backToTopButton.onclick = toTop;
 backToTopButton.innerHTML = `<i class="fa-solid fa-jet-fighter-up"></i>`;
 footer.appendChild(endOfResults);
 footer.appendChild(backToTopButton);
