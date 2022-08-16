@@ -19,7 +19,15 @@ let categoriesList = document.getElementById('category-list');
 let loader = document.getElementById('loader');
 hideLoader();
 
-let endOfResults = document.getElementById('end-of-results');
+let footer = document.querySelector('footer');
+let endOfResults = document.createElement('div');
+endOfResults.innerText = `Seems like they don't have 'em chief. Maybe try with a different category?`
+let backToTopButton = document.createElement('button');
+backToTopButton.onclick = toTop();
+backToTopButton.innerHTML = `<i class="fa-solid fa-jet-fighter-up"></i>`;
+footer.appendChild(endOfResults);
+footer.appendChild(backToTopButton);
+hideFooterContents();
 
 function createCategoryButtons(array){
     for(let i = 0; i < array.length; i++){
@@ -99,7 +107,8 @@ function infiniteScroll(category) {
                         }
                     }else if(totalShownRestaurants >= totalRestaurants){
                         hideLoader();
-                        endOfResults.innerText = `That's all of 'em chief. Go back to the top?`;
+                        endOfResults.innerText = `That's all of 'em chief.`;
+                        showFooterContents();
                     }
                     hideLoader();
                     pageScrolledCounter++;
@@ -107,8 +116,6 @@ function infiniteScroll(category) {
             }
     });
 }
-
-console.log(totalRestaurants);
 
 async function getRequest(category, offset, limit) {
     try {
@@ -207,7 +214,7 @@ function resetRestaurantCards(){
     restaurants.forEach(restaurant => {
         containerDiv.removeChild(restaurant);
     });
-    endOfResults.innerText = ``;
+    hideFooterContents();
 }
 
 function hideLoader() {
@@ -218,5 +225,23 @@ function hideLoader() {
 function showLoader() {
     loader.classList.remove('hide');
     loader.classList.add('show');
+}
+
+function hideFooterContents(){
+    endOfResults.classList.remove('show');
+    endOfResults.classList.add('hide');
+    backToTopButton.classList.remove('show');
+    backToTopButton.classList.add('hide');
+}
+
+function showFooterContents(){
+    endOfResults.classList.remove('hide');
+    endOfResults.classList.add('show');
+    backToTopButton.classList.remove('hide');
+    backToTopButton.classList.add('show');
+}
+
+function toTop(){
+    window.scroll({top: 0, behavior: 'smooth'});
 }
 //#endregion

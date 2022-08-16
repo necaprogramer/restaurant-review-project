@@ -138,8 +138,24 @@ body > #container > .restaurant-container > .restaurant-website-button > a:hover
     opacity: 1;
 }
 
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer > img{
+    height: 1rem;
+}
+
 #end-of-results{
     text-align: center;
+}
+
+.back-to-top > a{
+    height: 1rem;
+    width: 1rem;
 }
 
 @media (max-width: 767px) and (min-width:400px){
