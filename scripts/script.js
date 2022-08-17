@@ -21,7 +21,6 @@ hideLoader();
 
 let footer = document.querySelector('footer');
 let endOfResults = document.createElement('h4');
-endOfResults.innerText = `Seems like they don't have 'em chief. Maybe try with a different category?`
 let backToTopButton = document.createElement('button');
 backToTopButton.onclick = toTop;
 backToTopButton.innerHTML = `<i class="fa-solid fa-lg fa-jet-fighter-up"></i>`;
@@ -146,12 +145,16 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+        margin-top:1rem;
+        width:10rem;
         height: 10rem;`);
     }else{
         image.setAttribute('style', `background-image: url(${restaurantImage});
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
+        margin-top:1rem;
+        width:10rem;
         height: 10rem;`);
     }
 

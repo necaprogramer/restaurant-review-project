@@ -52,18 +52,21 @@ body > #container {
 }
 
 body > #container > .restaurant-container{
-    text-align: center;
-    padding: 1rem;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
 }
 
 body > #container > .restaurant-container > .restaurant-rating-and-price{
-    padding: 1rem;
     display: grid;
     justify-content: space-around;
     grid-template-columns: repeat(2, auto);
+    width: 100%;
 }
 
 body > #container > .restaurant-container > .restaurant-rating-and-price > .rating{
@@ -77,6 +80,7 @@ body > #container > .restaurant-container > .restaurant-rating-and-price > .pric
 body > #container > .restaurant-container > .restaurant-website-button{
     height: 2rem;
     width: 5rem;
+    margin-bottom: 1rem;
 }
 
 body > #container > .restaurant-container > .restaurant-website-button:hover{
@@ -154,7 +158,9 @@ footer > button:hover{
     cursor: pointer;
 }
 
-@media (max-width: 767px) and (min-width:400px){
+/* RESPONSIVITY STYLIZATION FOR MOBILES, AND TABLETS */
+
+@media (max-width: 767px) and (min-width:300px){
 
     body{
         margin: 0;
@@ -166,11 +172,11 @@ footer > button:hover{
 
     body > #categories > #category-list > .category-list-item > .category-button{
         height: 4rem;
-        width: 12rem;
+        width: 8.5rem;
     }
 
     body > #container{
-        grid-template-columns: repeat(1, 100%);
+        grid-template-columns: repeat(1, auto);
     }
 
     body > #container > .restaurant-container{
@@ -186,4 +192,18 @@ footer > button:hover{
     body > #container > .restaurant-container > .restaurant-website-button{
         justify-self: end;
     }
+
+    footer{
+        flex-direction: column;
+    }
+
+    footer > h4{
+        text-align: center;
+    }
+
+    footer > button{
+        margin-bottom: 1rem;
+    }
 }
+
+/* END OF RESPONSIVITY STYLIZATION FOR MOBILES, AND TABLETS */
