@@ -141,6 +141,9 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
     var restaurantDiv = document.createElement('div');
     containerDiv.appendChild(restaurantDiv);
     restaurantDiv.classList.add('restaurant-container');
+    restaurantDiv.addEventListener('click', () => {
+        window.open(`${restaurantLink}`, '_blank');
+    });
 
     let image = document.createElement('div');
     restaurantDiv.appendChild(image);

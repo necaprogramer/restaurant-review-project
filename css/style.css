@@ -62,6 +62,10 @@ body > #container > .restaurant-container{
     justify-content: center;
 }
 
+body > #container > .restaurant-container:hover{
+    cursor: pointer;
+}
+
 body > #container > .restaurant-container > h3{
     width: 6rem;
     white-space: nowrap;
