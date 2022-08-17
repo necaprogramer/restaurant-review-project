@@ -205,10 +205,10 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
     let button = document.createElement('button');
     restaurantDiv.appendChild(button);
     button.setAttribute('class', 'restaurant-website-button');
-    let link = document.createElement('a');
-    button.appendChild(link);
-    link.setAttribute('href', restaurantLink);
-    link.innerText = 'View';
+    button.innerText = "VIEW";
+    button.addEventListener('click', () => {
+        window.open(`${restaurantLink}`, '_blank');
+    });
 }
 
 

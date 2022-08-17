@@ -88,19 +88,11 @@ body > #container > .restaurant-container > .restaurant-website-button{
     height: 2rem;
     width: 5rem;
     margin-bottom: 1rem;
+    font-size: medium;
 }
 
 body > #container > .restaurant-container > .restaurant-website-button:hover{
     background-color: slateblue;
-}
-
-body > #container > .restaurant-container > .restaurant-website-button > a{
-    text-decoration: none;
-    color: black;
-    font-size: large;
-}
-
-body > #container > .restaurant-container > .restaurant-website-button > a:hover{
     color: white;
 }
 
