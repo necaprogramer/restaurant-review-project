@@ -118,6 +118,7 @@ body > #container > .restaurant-container > .restaurant-website-button:hover{
     height: 5rem;
     width: 5rem;
     margin: auto;
+    margin-top: 2rem;
 }
 
 .review-star-full{
@@ -205,6 +206,7 @@ footer > button:hover{
 
     body > #container > .restaurant-container > .restaurant-website-button{
         justify-self: end;
+        margin-bottom: 1rem;
     }
 
     footer{
