@@ -47,7 +47,7 @@ body > #container {
     display: grid;
     grid-template-columns: repeat(3, 20em);
     justify-content: center;
-    grid-gap: 1em;
+    grid-gap: 2rem;
     margin-top: 4rem;
 }
 
@@ -80,6 +80,7 @@ body > #container > .restaurant-container > h3{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0;
 }
 
 body > #container > .restaurant-container > .restaurant-rating-and-price{
@@ -100,7 +101,7 @@ body > #container > .restaurant-container > .restaurant-rating-and-price > .pric
 body > #container > .restaurant-container > .restaurant-website-button{
     height: 2rem;
     width: 5rem;
-    margin-bottom: 1rem;
+    margin-bottom: -1rem;
     font-size: medium;
 }
 
@@ -193,13 +194,9 @@ footer > button:hover{
 
     body > #container > .restaurant-container{
         border-radius: 1rem;
-        height: 12rem;
         flex-direction: row;
         flex-wrap: wrap;
-    }
-
-    body > #container > .restaurant-container > h3{
-
+        justify-content: space-evenly;
     }
 
     body > #container > .restaurant-container > .restaurant-image{
