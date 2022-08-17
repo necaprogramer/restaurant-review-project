@@ -62,6 +62,13 @@ body > #container > .restaurant-container{
     justify-content: center;
 }
 
+body > #container > .restaurant-container > h3{
+    width: 6rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 body > #container > .restaurant-container > .restaurant-rating-and-price{
     display: grid;
     justify-content: space-around;
