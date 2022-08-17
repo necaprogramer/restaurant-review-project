@@ -85,17 +85,19 @@ body > #container > .restaurant-container > h3{
 
 body > #container > .restaurant-container > .restaurant-rating-and-price{
     display: grid;
-    justify-content: space-around;
+    justify-content: center;
     grid-template-columns: repeat(2, auto);
     width: 100%;
 }
 
 body > #container > .restaurant-container > .restaurant-rating-and-price > .rating{
     display: flex;
+    padding-right: 1rem;
+    border-right: 0.1rem solid black;
 }
 
-body > #container > .restaurant-container > .restaurant-rating-and-price > .price{
-    font-size: medium;
+body > #container > .restaurant-container > .restaurant-rating-and-price > .pricing{
+    margin-left: 1rem;
 }
 
 body > #container > .restaurant-container > .restaurant-website-button{
