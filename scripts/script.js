@@ -147,22 +147,11 @@ function createRestaurantCard(restaurantName, restaurantImage, restaurantRating,
 
     let image = document.createElement('div');
     restaurantDiv.appendChild(image);
+    image.classList.add('restaurant-image');
     if(restaurantImage === ''){
-        image.setAttribute('style', `background-image: url('../resources/img/generic-restaurant-image.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-        margin-top:1rem;
-        width:10rem;
-        height: 10rem;`);
+        image.setAttribute('style', `background-image: url('../resources/img/generic-restaurant-image.jpg');`);
     }else{
-        image.setAttribute('style', `background-image: url(${restaurantImage});
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
-        margin-top:1rem;
-        width:10rem;
-        height: 10rem;`);
+        image.setAttribute('style', `background-image: url(${restaurantImage});`);
     }
 
     let name = document.createElement('h3');

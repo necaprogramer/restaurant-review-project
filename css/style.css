@@ -66,6 +66,15 @@ body > #container > .restaurant-container:hover{
     cursor: pointer;
 }
 
+body > #container > .restaurant-container > .restaurant-image{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-top:1rem;
+    width:10rem;
+    height: 10rem;
+}
+
 body > #container > .restaurant-container > h3{
     width: 6rem;
     white-space: nowrap;
@@ -179,17 +188,22 @@ footer > button:hover{
     }
 
     body > #container{
-        grid-template-columns: repeat(1, auto);
+        grid-template-columns: repeat(1, 100%);
     }
 
     body > #container > .restaurant-container{
-        display: grid;
-        grid-template-columns: repeat(2, auto);
         border-radius: 1rem;
+        height: 12rem;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 
     body > #container > .restaurant-container > h3{
-        align-self: center;
+
+    }
+
+    body > #container > .restaurant-container > .restaurant-image{
+        height: 5rem;
     }
 
     body > #container > .restaurant-container > .restaurant-website-button{
