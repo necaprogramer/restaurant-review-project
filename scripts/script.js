@@ -47,15 +47,19 @@ function createCategoryButtons(array){
 
 async function ifClicked(categoryButton, categoryId){
     categoryButton.addEventListener('click', async () => {
-        resetRestaurantCards();
-        await getRequest(categoryId, offsetOfFetchedRestaurants, LIMIT_OF_FETCHED_RESTAURANTS);
-        /* 
-        Since we are getting 50 restaurants and putting that in arrayOfRestaurants variable, we need to slice 15 restaurants from this array, which will be displayed & we put them in their own array
-        */
-        elementsOnPage = arrayOfRestaurants.slice(0, RESTAURANTS_PER_SCROLL);
-        createRestaurantCardsFromArray(elementsOnPage);
-        totalShownRestaurants += RESTAURANTS_PER_SCROLL;
-        infiniteScroll(categoryId);
+        setTimeout(async () => {
+            showLoader();
+            resetRestaurantCards();
+            await getRequest(categoryId, offsetOfFetchedRestaurants, LIMIT_OF_FETCHED_RESTAURANTS);
+            /* 
+            Since we are getting 50 restaurants and putting that in arrayOfRestaurants variable, we need to slice 15 restaurants from this array, which will be displayed & we put them in their own array
+            */
+            elementsOnPage = arrayOfRestaurants.slice(0, RESTAURANTS_PER_SCROLL);
+            createRestaurantCardsFromArray(elementsOnPage);
+            totalShownRestaurants += RESTAURANTS_PER_SCROLL;
+            infiniteScroll(categoryId);
+        }, 200);
+        hideLoader();
     })
 }
 
@@ -105,7 +109,6 @@ function infiniteScroll(category) {
                             getRequest(category, startingScrollIndex, LIMIT_OF_FETCHED_RESTAURANTS);
                         }
                     }else if(totalShownRestaurants >= totalRestaurants){
-                        hideLoader();
                         endOfResults.innerText = `That's all of 'em chief.`;
                         showFooterContents();
                     }
@@ -126,6 +129,7 @@ async function getRequest(category, offset, limit) {
             backToTopButton.classList.remove('show');
             backToTopButton.classList.add('hide');
             endOfResults.innerText = `There aren't any of 'em chief. Maybe try with a different category?`;
+            hideLoader();
         }
     }
     catch (e) {
