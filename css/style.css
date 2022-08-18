@@ -174,7 +174,7 @@ footer > button:hover{
     cursor: pointer;
 }
 
-/* RESPONSIVITY STYLIZATION FOR MOBILES, AND TABLETS */
+/* RESPONSIVNESS STYLIZATION FOR MOBILES, AND TABLETS */
 
 @media (max-width: 767px) and (min-width:300px){
 
@@ -224,4 +224,4 @@ footer > button:hover{
     }
 }
 
-/* END OF RESPONSIVITY STYLIZATION FOR MOBILES, AND TABLETS */
+/* END OF RESPONSIVNESS STYLIZATION FOR MOBILES, AND TABLETS */
