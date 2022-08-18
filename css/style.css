@@ -4,7 +4,7 @@ body{
 
 #title{
     text-align: center;
-    color: slateblue;
+    color: rgb(5, 135, 138);
 }
 
 #categories{
@@ -33,13 +33,12 @@ body{
     font-weight: 800;
     font-size: medium;
     border-radius: 0.5rem;
-    background-image: linear-gradient(60deg, slateblue, purple, lightskyblue);
+    background-image: linear-gradient(0deg, #2193b0, #6dd5ed);
     color: white;
 }
 
 #categories > #category-list > .category-list-item > .category-button:hover{
-    background-image: linear-gradient(150deg, slateblue, lightskyblue, slateblue);
-    color: darkblue;
+    opacity: 0.9;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
@@ -60,6 +59,8 @@ body > #container > .restaurant-container{
     gap: 1rem;
     align-items: center;
     justify-content: center;
+    border-radius: 1rem;
+    border: 0.1rem solid rgba(5, 135, 138, 0.5);
 }
 
 body > #container > .restaurant-container:hover{
@@ -81,6 +82,7 @@ body > #container > .restaurant-container > h3{
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
+    color: rgb(55,95,102);
 }
 
 body > #container > .restaurant-container > .restaurant-rating-and-price{
@@ -105,11 +107,15 @@ body > #container > .restaurant-container > .restaurant-website-button{
     width: 5rem;
     margin-bottom: -1rem;
     font-size: medium;
+    border-radius: 0.5rem;
+    background-color: rgb(5, 135, 138);
+    color: white;
 }
 
 body > #container > .restaurant-container > .restaurant-website-button:hover{
     background-color: slateblue;
     color: white;
+    cursor: pointer;
 }
 
 #loader{
